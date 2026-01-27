@@ -1,12 +1,11 @@
 const { resetProducts, addProduct, removeProduct, getProducts, getProduct, updateProduct } = require("./product.js");
 
-beforeEach(() => {
-    resetProducts();
-});
+beforeEach(() => resetProducts());
 
 describe("Adding Products", () => {
     it("should add product", () => {
         expect(() => addProduct("Tomato", 1.8)).not.toThrow();
+        expect(() => getProducts().toEqual([{id: 0, name: "Tomato", price: 1.8}]));
     });
     it("should return error because of missing fields", () => {
         expect(() => addProduct("Tomato")).toThrow("name and price are required to create a product");
